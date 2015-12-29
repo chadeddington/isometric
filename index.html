@@ -1,14 +1,17 @@
 <html>
 	<head>
 		<script src="isoWorld.js"></script> 
+		<link rel="stylesheet" type="text/css" href="app.css">
 	</head>
 
-	<body onload="main()">
-		<div style="margin-left: auto; margin-right:auto;width:800px;border:5px solid black"> 
-            <canvas id="myCanvas" width="800" height="600">
-            </canvas>
-        </div>
-
+	<body>
+		<div class='container'>
+			<button onclick="load()">Load</button>
+		</div>
+		
+		<div class="container">
+			<canvas id="myCanvas" width="800" height="600"></canvas>
+		</div>
 	</body>
 
 </html>

@@ -1,4 +1,4 @@
-function main()
+function load()
 {
   var gameMap = 
   			[[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
@@ -40,10 +40,11 @@ function main()
 	posX = 0;
 	posY = 0;
 
+	var leftkey = false;
+	var rightkey = false;
 
-    timer = setInterval(function()
-    {
-        //clear canvas
+	function draw() {
+		//clear canvas
         ctx.clearRect(0,0,c.width,c.height);
         ctx.fillStyle = 'green';
         ctx.fillRect(0,0,c.width,c.height);
@@ -56,7 +57,7 @@ function main()
 	        {
 	            if (gameMap[i][j] == 0)
 	            {
-	                ctx.drawImage(brick,isoX(posX,posY),isoY(posX,posY),64,64);
+	                ctx.drawImage(space,isoX(posX,posY),isoY(posX,posY),64,64);
 	                posX = posX + 32;
 	            }
 	            else if (gameMap[i][j] == 2)
@@ -87,10 +88,10 @@ function main()
      		startX += 10;
      		startY -= 10;
      	}
+		window.requestAnimationFrame(draw);
+	}
+	window.requestAnimationFrame(draw);
 
-     	
-        
-    },30);
 
     //********** Action Listeners ******
 
