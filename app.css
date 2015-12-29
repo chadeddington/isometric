@@ -3,8 +3,8 @@ button {
 	padding: 10px;
 }
 canvas {
-	width:800px;
-	border:5px solid black
+	border:5px solid black;
+	margin: 10px auto;
 }
 
 .container {

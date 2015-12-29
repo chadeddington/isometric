@@ -22,26 +22,34 @@ function load()
              [2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
              [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]];
 
-	c = document.getElementById("myCanvas")
-    ctx=c.getContext("2d")
+	var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+  ctx.canvas.width = window.innerWidth - 25;
+  ctx.canvas.height = 600;
 
-    tile = new Image();
+  debugger;
+
+  var tile = new Image();
 	tile.src = 'tile.png';
 
-	space = new Image();
+	var space = new Image();
 	space.src = 'space.png';
 
-	brick = new Image();
+	var brick = new Image();
 	brick.src = 'brick.png';
 
-	startX = 200;
-	startY = -200;
+	var width = 64;
 
-	posX = 0;
-	posY = 0;
+	var startX = 0;
+	var startY = 0;
+
+	var posX = 0;
+	var posY = 0;
 
 	var leftkey = false;
 	var rightkey = false;
+	var upkey = false;
+	var downkey = false;
 
 	function draw() {
 		//clear canvas
@@ -49,42 +57,42 @@ function load()
         ctx.fillStyle = 'green';
         ctx.fillRect(0,0,c.width,c.height);
         //drawImage(src, x position, y position, width, height)
-		for (var i = 0; i < gameMap.length; i++)
-      	{
+		for (var i = 0; i < gameMap.length; i++) {
       		posX = startX;
-
-	        for (var j = 0; j < gameMap[i].length; j++)
-	        {
-	            if (gameMap[i][j] == 0)
-	            {
-	                ctx.drawImage(space,isoX(posX,posY),isoY(posX,posY),64,64);
-	                posX = posX + 32;
+	        for (var j = 0; j < gameMap[i].length; j++) {
+	            if (gameMap[i][j] == 0) {
+	                ctx.drawImage(space,isoX(posX,posY),isoY(posX,posY),width,width);
+	                posX = posX + width / 2;
 	            }
-	            else if (gameMap[i][j] == 2)
-	            {
-	               ctx.drawImage(tile,isoX(posX,posY),isoY(posX,posY),64,64);
-	               posX = posX + 32
+	            else if (gameMap[i][j] == 2) {
+	               ctx.drawImage(tile,isoX(posX,posY),isoY(posX,posY),width,width);
+	               posX = posX + width / 2
 	            }
-	            else if (gameMap[i][j] == 9)
-	            {	                
-	                posX = posX + 32
+	            else if (gameMap[i][j] == 9) {	                
+	                posX = posX + width / 2
 	            }    
 	        }
-
-        	posY = posY + 32;
-        	   
+        	posY = posY + width / 2;
       	}
       	posY = startY;
      	posX = startX;
 
-     	if (leftkey)
-     	{
+     	if (upkey) {
+     		startX -= 10;
+     		startY -= 10;
+     	}
+
+     	if (downkey) {
+     		startX += 10;
+     		startY += 10;
+     	}
+
+     	if (leftkey) {
      		startX -= 10;
      		startY += 10;
      	}
 
-     	if (rightkey)
-     	{
+     	if (rightkey) {
      		startX += 10;
      		startY -= 10;
      	}
@@ -99,27 +107,44 @@ function load()
 	{
    		var key = e.keyCode
     	{
-	      	if (key == 37) //left keycode
-	      	{
+    		//left keycode
+	      	if (key == 37) {
 	         	leftkey = false;	                    
 	      	}
-	      	if (key == 39) //right keycode
-	      	{
+	      	//right keycode
+	      	if (key == 39) {
 	         	rightkey = false;
 	      	}
+	      	//up keycode
+	      	if (key == 38) {
+	      		upkey = false;
+	      	}
+	      	//down keycode 
+	      	if (key == 40) {
+	      		downkey = false;
+	      	}
+
     	}
 	}        
 	window.onkeydown = function (e)
 	{
 	   	var key = e.keyCode
 	   	{
-	      	if (key == 37) //left keycode
-	      	{
+	   		//left keycode
+	      	if (key == 37) {
 	         	leftkey = true;                    
 	      	}
-	      	if (key == 39) //right keycode
-	      	{
+	      	//right keycode
+	      	if (key == 39) {
 	         	rightkey = true;
+	      	} 
+	      	//up keycode
+	      	if (key ==38) {
+	      		upkey = true;
+	      	}
+	      	//down keycode 
+	      	if (key == 40) {
+	      		downkey = true;
 	      	}
 	   	}
 	}
