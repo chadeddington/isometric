@@ -1,5 +1,4 @@
-function load()
-{
+function load() {
   var gameMap = 
   			[[[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,9], //level 1
              [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
@@ -111,107 +110,100 @@ function load()
 
 	function draw() {
 		//clear canvas
-        ctx.clearRect(0,0,c.width,c.height);
-        ctx.fillStyle = 'lightblue';
-        ctx.fillRect(0,0,c.width,c.height);
-        //drawImage(src, x position, y position, width, height)
-        for (var h = 0; h < gameMap.length; h++) {
-        	posY = startY - (32 * h);
-
+    ctx.clearRect(0,0,c.width,c.height);
+    ctx.fillStyle = 'lightblue';
+    ctx.fillRect(0,0,c.width,c.height);
+    //drawImage(src, x position, y position, width, height)
+    for (var h = 0; h < gameMap.length; h++) {
+    	posY = startY - (32 * h);
 
 			for (var i = 0; i < gameMap[h].length; i++) {
-	      		posX = startX - (32 * h);
-		        for (var j = 0; j < gameMap[h][i].length; j++) {
-		            if (gameMap[h][i][j] == 0) {
-		                //ctx.drawImage(space,isoX(posX,posY),isoY(posX,posY),width,width);
-		                posX = posX + width / 2;
-		            }
-		            else if (gameMap[h][i][j] == 2) {
-		               ctx.drawImage(tile,isoX(posX,posY),isoY(posX,posY),width,width);
-		               posX = posX + width / 2
-		            }
-		            else if (gameMap[h][i][j] == 9) {	
-			            ctx.drawImage(brick,isoX(posX,posY),isoY(posX,posY),width,width);                
-		                posX = posX + width / 2
-		            }    
-		        }
-	        	posY = posY + width / 2;
-	      	}
-	      	// startY -= 32;
+    		posX = startX - (32 * h);
+        for (var j = 0; j < gameMap[h][i].length; j++) {
+          if (gameMap[h][i][j] == 0) {
+            //ctx.drawImage(space,isoX(posX,posY),isoY(posX,posY),width,width);
+            posX = posX + width / 2;
+          }
+          else if (gameMap[h][i][j] == 2) {
+           ctx.drawImage(tile,isoX(posX,posY),isoY(posX,posY),width,width);
+           posX = posX + width / 2
+          }
+          else if (gameMap[h][i][j] == 9) {	
+	          ctx.drawImage(brick,isoX(posX,posY),isoY(posX,posY),width,width);                
+	          posX = posX + width / 2
+          }    
+        }
+      	posY = posY + width / 2;
+    	}
 		}
-      	posY = startY;
-     	posX = startX;
+  	posY = startY;
+   	posX = startX;
 
-     	if (upkey) {
-     		startX -= 10;
-     		startY -= 10;
-     	}
+   	if (upkey) {
+   		startX -= 10;
+   		startY -= 10;
+   	}
 
-     	if (downkey) {
-     		startX += 10;
-     		startY += 10;
-     	}
+   	if (downkey) {
+   		startX += 10;
+   		startY += 10;
+   	}
 
-     	if (leftkey) {
-     		startX -= 10;
-     		startY += 10;
-     	}
+   	if (leftkey) {
+   		startX -= 10;
+   		startY += 10;
+   	}
 
-     	if (rightkey) {
-     		startX += 10;
-     		startY -= 10;
-     	}
+   	if (rightkey) {
+   		startX += 10;
+   		startY -= 10;
+   	}
 		window.requestAnimationFrame(draw);
 	}
 	window.requestAnimationFrame(draw);
 
 
-    //********** Action Listeners ******
+  //********** Action Listeners ******
 
-	window.onkeyup = function (e)
-	{
-   		var key = e.keyCode
-    	{
-    		//left keycode
-	      	if (key == 37) {
-	         	leftkey = false;	                    
-	      	}
-	      	//right keycode
-	      	if (key == 39) {
-	         	rightkey = false;
-	      	}
-	      	//up keycode
-	      	if (key == 38) {
-	      		upkey = false;
-	      	}
-	      	//down keycode 
-	      	if (key == 40) {
-	      		downkey = false;
-	      	}
-
-    	}
+	window.onkeyup = function(e) {
+ 		var key = e.keyCode
+    	
+		//left keycode
+  	if (key == 37) {
+     	leftkey = false;	                    
+  	}
+  	//right keycode
+  	if (key == 39) {
+     	rightkey = false;
+  	}
+  	//up keycode
+  	if (key == 38) {
+  		upkey = false;
+  	}
+  	//down keycode 
+  	if (key == 40) {
+  		downkey = false;
+  	}
 	}        
-	window.onkeydown = function (e)
-	{
-	   	var key = e.keyCode
-	   	{
-	   		//left keycode
-	      	if (key == 37) {
-	         	leftkey = true;                    
-	      	}
-	      	//right keycode
-	      	if (key == 39) {
-	         	rightkey = true;
-	      	} 
-	      	//up keycode
-	      	if (key ==38) {
-	      		upkey = true;
-	      	}
-	      	//down keycode 
-	      	if (key == 40) {
-	      		downkey = true;
-	      	}
-	   	}
+	window.onkeydown = function(e) {
+   	var key = e.keyCode
+	   	
+		//left keycode
+		if (key == 37) {
+	   	leftkey = true;                    
+		}
+		//right keycode
+		if (key == 39) {
+	   	rightkey = true;
+		} 
+		//up keycode
+		if (key ==38) {
+			upkey = true;
+		}
+		//down keycode 
+		if (key == 40) {
+			downkey = true;
+		}
 	}
 }
 
@@ -219,14 +211,12 @@ function load()
 //    From Cartesian to Isometric 
 //
 /*************************************/
-function isoX(cartX, cartY) 
-{
+function isoX(cartX, cartY) {
 	x = cartX - cartY;
 	return x;
 }
 
-function isoY(cartX, cartY)
-{
+function isoY(cartX, cartY) {
 	y = (cartX + cartY) / 2;
 	return y;
 }
